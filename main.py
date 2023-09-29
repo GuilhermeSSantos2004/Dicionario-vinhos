@@ -1,7 +1,7 @@
 
 import pandas as pd
+import requests
 
-viacep.com.br/ws/01001000/json/
 #pergunte ao usuário se ele é cliente ou funcionário
 #se for cliente, de as opções de vinhos da casa e pergunte seu endereço
 #pergunte informações a respeito de qual ele quer ver
@@ -53,6 +53,16 @@ def printa_dicionarios(dic):
         else:
             print(f"{key} : {dic[key]}")
     return
+
+def cep():
+    while True:
+        cep = input("Diga seu cep: ")
+        url = f"https://viacep.com.br/ws/{cep}/json/"
+
+        response = requests.get(url)
+        if response.status_code == 200:
+
+            print(response.json())
 vinhos = {
     'tipo' : ['tinto', 'rosÃ©', 'seco', 'branco', 'suave'],
     '% alcoolico' : [11,15,12,13,10],
